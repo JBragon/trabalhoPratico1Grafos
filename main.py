@@ -4,8 +4,6 @@ from pathAlgorithms import dijkstra, bellman, floyd
 from importFile import readFile
 import os
 
-loop = 0
-
 while True:  # loop do menu
 
     print("\nArquivos:\n")
@@ -33,16 +31,16 @@ while True:  # loop do menu
 
     print("\n")
 
-    origin = int(input("Escolha o vértice origem: "))
+    origin = int(input(f"Origem (de 0 a {lastVertex - 1}):"))
 
     if origin < 0 or origin > lastVertex-1:
-        print("Vertice de origem invalido!")
+        print("Origem invalida!")
         break
 
-    destiny = int(input("Escolha o vértice destino: "))
+    destiny = int(input(f"Destino (de 0 a {lastVertex - 1}):"))
 
     if destiny < 0 or destiny > lastVertex-1:
-        print("Vertice de destino invalido!")
+        print("Destino invalido!")
         break
 
     os.system('cls||clear')
@@ -53,7 +51,7 @@ while True:  # loop do menu
 
     starTime = time()  # para calcular o tempo de execução
 
-    print("Processando o algoritmo. Aguarde...")
+    print("Processando...")
 
     # algoritmo de dijkstra
     if option == 1:
@@ -63,8 +61,8 @@ while True:  # loop do menu
         os.system('cls||clear')
 
         # impressao, na tela, dos dados
+        print("Caminho:", writeTraveledPath(pred, origin, destiny))
         print(f"Custo: {dist[destiny]}")
-        print("Caminho percorrido: ", writeTraveledPath(pred, origin, destiny))
 
         endTime = time()  # para calcular o tempo de execucao
         print(f"Tempo de execução: {endTime - starTime}")
@@ -77,8 +75,8 @@ while True:  # loop do menu
         os.system('cls||clear')
 
         # impressao, na tela, dos dados
-        print(f"Custo: {dist[destiny]} unidades")
-        print("Caminho mínimo: ", writeTraveledPath(pred, origin, destiny))
+        print("\nCaminho:", writeTraveledPath(pred, origin, destiny))
+        print(f"Custo: {dist[destiny]}")
 
         endTime = time()
         print(f"Tempo de execução: {endTime - starTime}")
@@ -91,8 +89,8 @@ while True:  # loop do menu
         os.system('cls||clear')
 
         # impressao, na tela, dos dados
-        print("\nCaminho mínimo: ", writeTraveledPathWithFloyd(pred, origin, destiny))
-        print(f"Custo: {dist[origin][destiny]} unidades")
+        print("\nCaminho:", writeTraveledPathWithFloyd(pred, origin, destiny))
+        print(f"Custo: {dist[origin][destiny]}")
 
         endTime = time()
         print(f"Tempo de execução: {endTime - starTime}")
@@ -103,5 +101,3 @@ while True:  # loop do menu
 
     input("Pressione enter para continuar...")
     os.system('cls||clear')
-
-    loop += 1
