@@ -62,19 +62,19 @@ def dijkstra(Graph, origin):  # (grafo ponderado (Vertex, Edges, weight), vertic
         if u == -1:  # condicao caso nao haja alteracao nas distancias
             break
 
-        adjacentes = Graph[u]  # vertices adjacentes a 'u'
+        adjacent = Graph[u]  # vertices adjacentes a 'u'
         # remove o vertice U dos vertices a serem processados
         listOfVertex.remove(u)
-        indice = 0
+        index = 0
 
-        if len(adjacentes) > 0:  # se existem vertices adjacentes
-            for v in adjacentes[0]:  # para cada vertice adjacente, faca
+        if len(adjacent) > 0:  # se existem vertices adjacentes
+            for v in adjacent[0]:  # para cada vertice adjacente, faca
                 # se a distancia ate V for maior que a distancia ate 'u' + peso da aresta
-                if distance[v] > distance[u] + adjacentes[1][indice]:
+                if distance[v] > distance[u] + adjacent[1][index]:
                     # um novo caminho foi encontrado a partir de 'u'
-                    distance[v] = distance[u] + adjacentes[1][indice]
+                    distance[v] = distance[u] + adjacent[1][index]
                     pred[v] = u  # coloca 'u' como predecessor de 'v'
-                indice += 1
+                index += 1
 
     return distance, pred  # retorna os vetores de distancia e predecessor, respectivamente
 
