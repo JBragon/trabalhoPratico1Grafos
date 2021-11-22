@@ -4,7 +4,7 @@ from pathAlgorithms import dijkstra, bellman, floyd
 from importFile import readFile
 import os
 
-while True:  # loop do menu
+while True:
 
     print("\nArquivos:\n")
 
@@ -25,7 +25,6 @@ while True:  # loop do menu
 
     graph, lastVertex = readFile(fileName)
 
-    #imprime a estrutura do grafo
     for i in range(len(graph)):
         print(str(i), "- ", str(graph[i]))
 
@@ -49,53 +48,46 @@ while True:  # loop do menu
     option = int(input("1- Dijkstra\n2- Bellman-Ford\n3- Floyd-Warshall\n-1 - para sair\n-> "))
     print("\n")
 
-    starTime = time()  # para calcular o tempo de execução
+    starTime = time()
 
     print("Processando...")
 
-    # algoritmo de dijkstra
+
     if option == 1:
-        # executa o algoritmo de dijkstra
+
         dist, pred = dijkstra(graph, origin)
         
         os.system('cls||clear')
 
-        # impressao, na tela, dos dados
         print("Caminho:", writeTraveledPath(pred, origin, destiny))
         print(f"Custo: {dist[destiny]}")
 
-        endTime = time()  # para calcular o tempo de execucao
+        endTime = time()
         print(f"Tempo de execução: {endTime - starTime}")
 
-    # algoritmo de bellman-ford
     if option == 2:
-        # executa o algoritmo de bellman-ford
+
         dist, pred = bellman(graph, origin)
 
         os.system('cls||clear')
 
-        # impressao, na tela, dos dados
         print("\nCaminho:", writeTraveledPath(pred, origin, destiny))
         print(f"Custo: {dist[destiny]}")
 
         endTime = time()
         print(f"Tempo de execução: {endTime - starTime}")
 
-    # algoritmo de floyd-warshall
     if option == 3:
-        # executa o algoritmo de floyd-warshall
         dist, pred = floyd(graph)
 
         os.system('cls||clear')
 
-        # impressao, na tela, dos dados
         print("\nCaminho:", writeTraveledPathWithFloyd(pred, origin, destiny))
         print(f"Custo: {dist[origin][destiny]}")
 
         endTime = time()
         print(f"Tempo de execução: {endTime - starTime}")
 
-    # condicao para sair do loop
     if option < 0 or option > 3:
         break
 
